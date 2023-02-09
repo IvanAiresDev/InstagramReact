@@ -1,10 +1,10 @@
-import Top from "./cabeçalho"
-import LadoDireito from "./ladoDireito"
+import Top from "./NavBar"
+import LadoDireito from "./SideBar"
 import LadoEsquerdo from "./ladoEsquerdo"
 
 export default
 
-    function App() {
+    function Corpo() {
     return (
         <div class='corpo'>
             <Top />

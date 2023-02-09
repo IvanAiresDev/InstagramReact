@@ -1,16 +1,20 @@
 export default
     function Storys() {
+    const stories = [
+        { img: "assets/img/foto-perfil.jpeg", name: "ivan_mateus2" },
+        { img: "assets/img/meowed.svg", name: "meowed" },
+        { img: "assets/img/barked.svg", name: "barked" },
+        { img: "assets/img/nathanwpylestrangeplanet.svg", name: "nathanwpylestrangeplanet" },
+        { img: "assets/img/wawawicomics.svg", name: "wawawicomics" },
+        { img: "assets/img/respondeai.svg", name: "respondeai" },
+        { img: "assets/img/filomoderna.svg", name: "filomoderna" },
+        { img: "assets/img/memeriagourmet.svg", name: "memeriagourmet" }
+
+    ]
     return (
         <div class="stories">
 
-            <StorySingle img='assets/img/9gag.svg' name="9gag" />
-            <StorySingle img='assets/img/meowed.svg' name="meowed" />
-            <StorySingle img='assets/img/barked.svg' name="barked" />
-            <StorySingle img='assets/img/nathanwpylestrangeplanet.svg' name="nathanwpylestrangeplanet" />
-            <StorySingle img='assets/img/wawawicomics.svg' name="wawawicomics" />
-            <StorySingle img='assets/img/respondeai.svg' name="respondeai" />
-            <StorySingle img='assets/img/filomoderna.svg' name="filomoderna" />
-            <StorySingle img='assets/img/memeriagourmet.svg' name="memeriagourmet" />
+            {stories.map((p) => <StorySingle img={p.img} name={p.name} />)}
 
             <div class="setinha">
                 <ion-icon name="chevron-forward-circle"></ion-icon>
