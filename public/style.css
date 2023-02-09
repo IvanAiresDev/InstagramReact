@@ -162,6 +162,10 @@ body {
   font-weight: 500;
 }
 
+.red {
+  color: red
+}
+
 .post .topo .usuario,
 .post .topo .acoes {
   display: flex;

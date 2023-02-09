@@ -1,18 +1,16 @@
 
 const dadosPost = [
-    { imgPerfil: "assets/img/foto-perfil.jpeg", name: "ivan_matesu2", imgPost: "assets/img/desbravadores.jpg" },
-    { imgPerfil: "assets/img/meowed.svg", name: "meowed", imgPost: "assets/img/gato-telefone.svg" },
-    { imgPerfil: "assets/img/barked.svg", name: "barked", imgPost: "assets/img/dog.svg" }
+    { imgPerfil: "assets/img/foto-perfil.jpeg", name: "ivan_matesu2", imgPost: "assets/img/desbravadores.jpg", numLikes: 101.523 },
+    { imgPerfil: "assets/img/meowed.svg", name: "meowed", imgPost: "assets/img/gato-telefone.svg", numLikes: 96.456 },
+    { imgPerfil: "assets/img/barked.svg", name: "barked", imgPost: "assets/img/dog.svg", numLikes: 153.283 }
 ]
-
-let curtiu;
 
 export default
     function Posts() {
     return (
         <div class="posts">
 
-            {dadosPost.map((p) => <SinglePost imgPerfil={p.imgPerfil} name={p.name} imgPost={p.imgPost} />)}
+            {dadosPost.map((p) => <SinglePost imgPerfil={p.imgPerfil} name={p.name} imgPost={p.imgPost} numLikes={p.numLikes} />)}
 
         </div>
     )
@@ -36,8 +34,9 @@ function SinglePost(props) {
             </div>
 
             <div class="conteudo">
-                <img src={props.imgPost} />
+                <img onClick={LikeNaImg} src={props.imgPost} />
             </div>
+
 
             <div class="fundo">
                 <div class="acoes">
@@ -54,7 +53,7 @@ function SinglePost(props) {
                 <div class="curtidas">
                     <img src="assets/img/respondeai.svg" alt="respondeai" />
                     <div class="texto">
-                        Curtido por <strong>respondeai</strong> e <strong data-test="likes-number">outras 101.523 pessoas</strong>
+                        Curtido por <strong>respondeai</strong> e <strong data-test="likes-number">outras {props.numLikes} pessoas</strong>
                     </div>
                 </div>
             </div>
@@ -62,10 +61,27 @@ function SinglePost(props) {
     )
 }
 
-function Click() {
-    if (curtiu === undefined) {
-        document.getElementsByName('heart-outline').style.color = "red"
+function Click(curtida) {
+    let numCurtidas;
+    const textCurtidas = curtida.target.parentNode.parentNode.parentNode
+    if (curtida.target.name === "heart-outline") {
+        curtida.target.name = "heart"
+        curtida.target.classList.add('red')
+    } else {
+        curtida.target.name = "heart-outline"
+        curtida.target.classList.remove('red')
+    }
+}
 
+function LikeNaImg(curtida) {
+    const post = curtida.target.parentNode.parentNode;
+    const like = post.querySelector('.fundo ion-icon:first-child');
+    if (like.name === "heart-outline") {
+        like.name = "heart";
+        like.classList.add('red');
+    } else {
+        like.name = "heart-outline";
+        like.classList.remove('red');
     }
 }
 
