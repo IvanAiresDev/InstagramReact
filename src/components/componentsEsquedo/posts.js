@@ -72,7 +72,7 @@ function SinglePost(props) {
             </div>
 
             <div class="conteudo">
-                <img onDoubleClick={imgLike} src={props.imgPost} />
+                <img data-test="post-image" onDoubleClick={imgLike} src={props.imgPost} />
                 <ion-icon name="heart" class={heart}></ion-icon>
             </div>
 
