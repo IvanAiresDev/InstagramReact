@@ -1,15 +1,30 @@
+import { useState } from "react"
 import Sugestoes from "./componentsDireito/Sugestoes"
 export default
 
     function LadoDireito() {
+
+    const [img, setImg] = useState("assets/img/catanacomics.svg")
+    const [nome, setNome] = useState("catanacomics")
+
+    function mudarNome() {
+        const novoNome = prompt("Digite seu novo nome de usuario")
+        novoNome ? setNome(novoNome) : setNome(nome)
+    }
+
+    function mudarImg() {
+        const novaImg = prompt("Digite o link da sua imagem");
+        novaImg ? setImg(novaImg) : setImg(img)
+    }
+
     return (
         <div class="sidebar">
             <div class="usuario">
-                <img data-test="profile-image" onClick={MudarImg} src="assets/img/catanacomics.svg" alt="imagem de perfil" />
+                <img data-test="profile-image" onClick={mudarImg} src={img} alt="imagem de perfil" />
                 <div class="texto">
                     <span>
-                        <strong data-test="name">catanacomics</strong>
-                        <ion-icon data-test="edit-name" onClick={MudarNome} name="pencil"></ion-icon>
+                        <strong data-test="name">{nome}</strong>
+                        <ion-icon data-test="edit-name" onClick={mudarNome} name="pencil"></ion-icon>
                     </span>
                 </div>
             </div>
@@ -27,20 +42,4 @@ export default
             </div>
         </div>
     )
-}
-
-function MudarNome() {
-    const nomeAntigo = document.querySelector('.sidebar strong')
-    const novoNome = prompt("digite seu novo nome de usuario");
-    if (novoNome) {
-        nomeAntigo.innerHTML = novoNome
-    }
-}
-
-function MudarImg() {
-    const imgAntiga = document.querySelector('.sidebar img')
-    const novaImg = prompt('Digite o link da sua imagem');
-    if (novaImg && novaImg.contains === 'https') {
-        imgAntiga.innerHTML = `<img src=${novaImg} />`
-    }
 }

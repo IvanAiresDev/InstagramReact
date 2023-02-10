@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 
 const dadosPost = [
     { imgPerfil: "assets/img/foto-perfil.jpeg", name: "ivan_matesu2", imgPost: "assets/img/desbravadores.jpg", numLikes: 101.523 },
@@ -18,6 +20,35 @@ export default
 
 function SinglePost(props) {
 
+    const [qntdLike, setQntdLike] = useState(props.numLikes);
+    const [like, setLike] = useState("heart-outline");
+    const [color, setColor] = useState(null)
+    const [salvar, setSalvar] = useState("bookmark-outline")
+
+    function clickLike() {
+        if (like === "heart-outline") {
+            setLike("heart")
+            setColor("red")
+            setQntdLike(qntdLike + 0.001)
+        } else {
+            setLike("heart-outline")
+            setColor(null)
+            setQntdLike(qntdLike - 0.001)
+        }
+    }
+
+    function imgLike() {
+        if (like === "heart-outline") {
+            setLike("heart")
+            setColor("red")
+            setQntdLike(qntdLike + 0.001)
+        }
+    }
+
+    function salvarPost() {
+        salvar === "bookmark-outline" ? setSalvar("bookmark") : setSalvar("bookmark-outline")
+    }
+
     return (
 
         <div class="post" data-test="post">
@@ -34,54 +65,35 @@ function SinglePost(props) {
             </div>
 
             <div class="conteudo">
-                <img onClick={LikeNaImg} src={props.imgPost} />
+                <img onClick={imgLike} src={props.imgPost} />
             </div>
 
 
             <div class="fundo">
                 <div class="acoes">
                     <div>
-                        <ion-icon data-test="like-post" onClick={Click} name="heart-outline"></ion-icon>
+                        <ion-icon data-test="like-post" onClick={clickLike} class={color} name={like}></ion-icon>
                         <ion-icon name="chatbubble-outline"></ion-icon>
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
                     <div>
-                        <ion-icon data-test="save-post" name="bookmark-outline"></ion-icon>
+                        <ion-icon data-test="save-post" onClick={salvarPost} name={salvar}></ion-icon>
                     </div>
                 </div>
 
                 <div class="curtidas">
                     <img src="assets/img/respondeai.svg" alt="respondeai" />
                     <div class="texto">
-                        Curtido por <strong>respondeai</strong> e <strong data-test="likes-number">outras {props.numLikes} pessoas</strong>
+                        Curtido por <strong>respondeai</strong> e <strong data-test="likes-number">outras {qntdLike.toFixed(3)} pessoas</strong>
                     </div>
                 </div>
             </div>
         </div>
     )
+
+
+
 }
 
-function Click(curtida) {
-    let numCurtidas;
-    const textCurtidas = curtida.target.parentNode.parentNode.parentNode
-    if (curtida.target.name === "heart-outline") {
-        curtida.target.name = "heart"
-        curtida.target.classList.add('red')
-    } else {
-        curtida.target.name = "heart-outline"
-        curtida.target.classList.remove('red')
-    }
-}
 
-function LikeNaImg(curtida) {
-    const post = curtida.target.parentNode.parentNode;
-    const like = post.querySelector('.fundo ion-icon:first-child');
-    if (like.name === "heart-outline") {
-        like.name = "heart";
-        like.classList.add('red');
-    } else {
-        like.name = "heart-outline";
-        like.classList.remove('red');
-    }
-}
 
