@@ -24,6 +24,7 @@ function SinglePost(props) {
     const [like, setLike] = useState("heart-outline");
     const [color, setColor] = useState(null)
     const [salvar, setSalvar] = useState("bookmark-outline")
+    const [heart, setHeart] = useState("opacity0")
 
     function clickLike() {
         if (like === "heart-outline") {
@@ -42,7 +43,13 @@ function SinglePost(props) {
             setLike("heart")
             setColor("red")
             setQntdLike(qntdLike + 0.001)
+            setHeart("opacity1")
+            setTimeout(sumir, 800)
         }
+    }
+
+    function sumir() {
+        setHeart("opacity0")
     }
 
     function salvarPost() {
@@ -66,6 +73,7 @@ function SinglePost(props) {
 
             <div class="conteudo">
                 <img onDoubleClick={imgLike} src={props.imgPost} />
+                <ion-icon name="heart" class={heart}></ion-icon>
             </div>
 
 

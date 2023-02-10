@@ -190,6 +190,31 @@ body {
   cursor: pointer;
 }
 
+.post .conteudo {
+  position: relative;
+}
+
+.post .conteudo ion-icon {
+  position: absolute;
+  font-size: 300px;
+  color: #ffffff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.opacity0 {
+  opacity: 0;
+  z-index: -1;
+
+}
+
+.opacity1 {
+  opacity: 1;
+  z-index: 2;
+  transition: all 0.3s;
+}
+
 .post .conteudo img {
   width: 100%;
 }
