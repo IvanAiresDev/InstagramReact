@@ -65,7 +65,7 @@ function SinglePost(props) {
             </div>
 
             <div class="conteudo">
-                <img onClick={imgLike} src={props.imgPost} />
+                <img onDoubleClick={imgLike} src={props.imgPost} />
             </div>
 
 
