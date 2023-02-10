@@ -62,7 +62,7 @@ function SinglePost(props) {
             <div class="topo">
 
                 <div class="usuario">
-                    <img data-test="post-image" src={props.imgPerfil} alt={props.name} />
+                    <img src={props.imgPerfil} alt={props.name} />
                     {props.name}
                 </div>
 
